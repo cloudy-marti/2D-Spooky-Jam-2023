@@ -32,7 +32,7 @@ public class SpriteAnimation : MonoBehaviour
             m_body_sprite_id = (m_body_sprite_id + 1) % m_body_sprites.Count;
             m_time_counter -= m_sprite_duration;
             m_sprite_renderer.sprite = m_body_sprites[m_body_sprite_id];
-            Debug.Log("switch");
+            //Debug.Log("switch");
         }
     }
 }

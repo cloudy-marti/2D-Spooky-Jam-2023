@@ -14,6 +14,8 @@ public class Character : MonoBehaviour
     private float m_invicibilityDurationCountdown = 0;
     private bool m_invincibilityReady = false;
     private bool m_canTakeDamage = true;
+    private GameObject m_collidedObject = null;
+    private GameObject m_collidedPlaceholder = null;
 
     public void Update()
     {
@@ -41,8 +43,6 @@ public class Character : MonoBehaviour
                 m_invicibilityDurationCountdown = 0f;
             }
         }
-
-
     }
 
     /// <summary>
@@ -81,6 +81,22 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
+    /// Called by the Grab Command in the input manager
+    /// </summary>
+    public void OnInteract()
+    {
+        if (m_currentHandheldObject != null && m_collidedPlaceholder != null)
+        {
+            PlaceObject(m_collidedPlaceholder);
+            return;
+        }
+        else if (m_currentHandheldObject == null)
+        { 
+            GrabObject(m_collidedObject);
+        }
+    }
+
+    /// <summary>
     /// Grabs an object and place it at the same position as <seealso cref="m_objectPlaceHolder"/>
     /// </summary>
     /// <param name="_object">The Object to grab</param>
@@ -91,9 +107,10 @@ public class Character : MonoBehaviour
         {
             return false;
         }
-
+        m_currentHandheldObject = _object;
         _object.transform.parent = m_objectPlaceHolder;
         _object.transform.position = Vector3.zero;
+        _object.transform.localPosition = Vector3.zero;
         return true;
     }
 
@@ -104,13 +121,33 @@ public class Character : MonoBehaviour
     /// <returns>True if the object was placed, false otherwise</returns>
     public bool PlaceObject(GameObject _placeHolder)
     {
-        if (_placeHolder.CompareTag(m_interactableObjectTag) == false || m_currentHandheldObject == null)
+        if (_placeHolder.CompareTag(m_interactableObjectTag) == false)
         {
             return false;
         }
 
-        _placeHolder.transform.parent = m_currentHandheldObject.transform;
-        _placeHolder.transform.position = Vector3.zero;
+        m_currentHandheldObject.transform.parent = _placeHolder.transform;
+        m_currentHandheldObject.transform.localPosition = Vector3.zero;
+        m_currentHandheldObject = null;
         return true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        m_collidedObject = collision.gameObject;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        m_collidedObject = null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        m_collidedPlaceholder = other.gameObject;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        m_collidedPlaceholder = other.gameObject;
     }
 }
