@@ -9,12 +9,12 @@ public class Character : MonoBehaviour
 
     private GameObject m_currentHandheldObject = null;
     private const string m_grabableObjectTag = "Grabbable";
-    private const string m_interactableObjectTag = "Interactable";
+    private const string m_receptacleObjectTage = "Receptacle";
     private float m_invicibilityCountdown = 0;
     private float m_invicibilityDurationCountdown = 0;
     private bool m_invincibilityReady = false;
     private bool m_canTakeDamage = true;
-    private GameObject m_collidedObject = null;
+    private GameObject m_collidedGrabbable = null;
     private GameObject m_collidedPlaceholder = null;
 
     public void Update()
@@ -85,14 +85,15 @@ public class Character : MonoBehaviour
     /// </summary>
     public void OnInteract()
     {
+        Debug.Log("Hey !");
         if (m_currentHandheldObject != null && m_collidedPlaceholder != null)
         {
             PlaceObject(m_collidedPlaceholder);
             return;
         }
-        else if (m_currentHandheldObject == null && m_collidedObject != null)
+        else if (m_currentHandheldObject == null && m_collidedGrabbable != null)
         { 
-            GrabObject(m_collidedObject);
+            GrabObject(m_collidedGrabbable);
         }
     }
 
@@ -103,7 +104,7 @@ public class Character : MonoBehaviour
     /// <returns>True if the object was grabbed, false otherwise</returns>
     public bool GrabObject(GameObject _object)
     {
-        if (_object.CompareTag(m_grabableObjectTag) == false)
+        if (_object.CompareTag(m_grabableObjectTag) == false || m_currentHandheldObject != null)
         {
             return false;
         }
@@ -121,7 +122,7 @@ public class Character : MonoBehaviour
     /// <returns>True if the object was placed, false otherwise</returns>
     public bool PlaceObject(GameObject _placeHolder)
     {
-        if (_placeHolder.CompareTag(m_interactableObjectTag) == false)
+        if (_placeHolder.CompareTag(m_receptacleObjectTage) == false || m_currentHandheldObject.GetComponent<GrabbableReceptacle>().get_receptacle() != _placeHolder)
         {
             return false;
         }
@@ -132,22 +133,21 @@ public class Character : MonoBehaviour
         return true;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        m_collidedObject = collision.gameObject;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        m_collidedObject = null;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        m_collidedPlaceholder = other.gameObject;
+        if (other.gameObject.CompareTag("Grabbable"))
+            m_collidedGrabbable = other.gameObject;
+
+        if (other.gameObject.CompareTag("Receptacle"))
+            m_collidedPlaceholder = other.gameObject;
     }
+
     private void OnTriggerExit(Collider other)
     {
-        m_collidedPlaceholder = other.gameObject;
+        if (m_collidedGrabbable != null && m_collidedGrabbable != other.gameObject)
+            m_collidedGrabbable = null;
+
+        if (m_collidedPlaceholder != null && m_collidedPlaceholder != other.gameObject)
+            m_collidedPlaceholder = null;
     }
 }
