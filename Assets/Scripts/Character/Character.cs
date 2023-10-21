@@ -15,7 +15,9 @@ public class Character : MonoBehaviour
     private bool m_invincibilityReady = false;
     private bool m_canTakeDamage = true;
     private GameObject m_collidedGrabbable = null;
-    private GameObject m_collidedPlaceholder = null;
+    private GameObject m_collidedReceptacle = null;
+
+    private float DROP_TORQUE = 5f;
 
     public void Update()
     {
@@ -85,20 +87,41 @@ public class Character : MonoBehaviour
     /// </summary>
     public void OnInteract()
     {
-        Debug.Log("Hey !");
-        if (m_currentHandheldObject != null && m_collidedPlaceholder != null)
+        if (m_currentHandheldObject != null && m_collidedReceptacle != null)
         {
-            PlaceObject(m_collidedPlaceholder);
+            PlaceObject(m_collidedReceptacle);
             return;
         }
         else if (m_currentHandheldObject == null && m_collidedGrabbable != null)
         { 
             GrabObject(m_collidedGrabbable);
         }
+        else if (m_currentHandheldObject != null)
+        {
+            DropObject();
+        }
     }
 
     /// <summary>
-    /// Grabs an object and place it at the same position as <seealso cref="m_objectPlaceHolder"/>
+    /// Drop grabbed object if any.
+    /// </summary>
+    /// <returns>True if the object was dropped, false otherwise</returns>
+    public bool DropObject()
+    {
+        if (m_currentHandheldObject == null)
+            return false;
+
+        m_currentHandheldObject.transform.parent = null;
+        Rigidbody rigidbody = m_currentHandheldObject.GetComponent<Rigidbody>();
+        rigidbody.isKinematic = false;
+        rigidbody.AddTorque(new Vector3(0, 0, Random.Range(-1, 1) * DROP_TORQUE));
+        m_currentHandheldObject = null;
+
+        return true;
+    }
+
+    /// <summary>
+    /// Grabs or drop an object
     /// </summary>
     /// <param name="_object">The Object to grab</param>
     /// <returns>True if the object was grabbed, false otherwise</returns>
@@ -112,6 +135,7 @@ public class Character : MonoBehaviour
         _object.transform.parent = m_objectPlaceHolder;
         _object.transform.position = Vector3.zero;
         _object.transform.localPosition = Vector3.zero;
+        _object.GetComponent<Rigidbody>().isKinematic = true;
         return true;
     }
 
@@ -139,7 +163,7 @@ public class Character : MonoBehaviour
             m_collidedGrabbable = other.gameObject;
 
         if (other.gameObject.CompareTag("Receptacle"))
-            m_collidedPlaceholder = other.gameObject;
+            m_collidedReceptacle = other.gameObject;
     }
 
     private void OnTriggerExit(Collider other)
@@ -147,7 +171,7 @@ public class Character : MonoBehaviour
         if (m_collidedGrabbable != null && m_collidedGrabbable != other.gameObject)
             m_collidedGrabbable = null;
 
-        if (m_collidedPlaceholder != null && m_collidedPlaceholder != other.gameObject)
-            m_collidedPlaceholder = null;
+        if (m_collidedReceptacle != null && m_collidedReceptacle != other.gameObject)
+            m_collidedReceptacle = null;
     }
 }

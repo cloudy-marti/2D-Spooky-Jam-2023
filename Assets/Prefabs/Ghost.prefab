@@ -67,8 +67,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 3.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7617271827702232677}
   - component: {fileID: 1405300957757277579}
   - component: {fileID: 4032687449919002546}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ghost
   m_TagString: Player
   m_Icon: {fileID: 0}
