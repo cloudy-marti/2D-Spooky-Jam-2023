@@ -17,9 +17,10 @@ public class Character : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) MakeInvincible();
-        if (Input.GetKeyDown(KeyCode.A)) TakeDamage(1f);
+        //if (Input.GetKeyDown(KeyCode.E)) MakeInvincible();
+        //if (Input.GetKeyDown(KeyCode.A)) TakeDamage(1f);
 
+        // If we can take damage and our skill isn't ready, we are not using it, so we count the cooldown for the skill
         if (m_invincibilityReady == false && m_canTakeDamage == true)
         { 
             m_invicibilityCountdown += Time.deltaTime;
@@ -30,6 +31,7 @@ public class Character : MonoBehaviour
             }
         }
 
+        // If we can't take damage and our skill isn't ready, we are using it, so we count the duration
         if (m_canTakeDamage == false && m_invincibilityReady == false)
         {
             m_invicibilityDurationCountdown += Time.deltaTime;
