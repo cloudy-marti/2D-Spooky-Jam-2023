@@ -12,12 +12,16 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent m_navMeshAgent;
     private const string m_playerTag = "Player";
+    private Animator m_animator;
+    private SpriteRenderer m_spriteRenderer;
 
     Coroutine m_currentSearchingCoroutine;
 
     private void Start()
     {
         m_navMeshAgent = GetComponent<NavMeshAgent>();
+        m_animator = GetComponentInChildren<Animator>();
+        m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     IEnumerator StartSearching()
@@ -29,6 +33,19 @@ public class Enemy : MonoBehaviour
 
         m_navMeshAgent.SetDestination(m_startingTransform.position);
         m_currentSearchingCoroutine = null;
+        m_animator.SetBool("isWalking", true);
+    }
+
+    private void Update()
+    {
+        if (m_navMeshAgent.velocity.x > 0 && m_spriteRenderer.flipX == false)
+        {
+            m_spriteRenderer.flipX = true;
+        }
+        else if (m_navMeshAgent.velocity.x < 0 && m_spriteRenderer.flipX == true)
+        { 
+            m_spriteRenderer.flipX = false;
+        }
     }
 
     public void MoveToPosition(Transform _transform)
@@ -37,10 +54,7 @@ public class Enemy : MonoBehaviour
 
         m_navMeshAgent.SetDestination(_transform.position);
         m_currentSearchingCoroutine = StartCoroutine(StartSearching());
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
+        m_animator.SetBool("isWalking", true);
     }
 
     private void OnTriggerStay(Collider other)
@@ -53,11 +67,13 @@ public class Enemy : MonoBehaviour
         }
         other.GetComponent<Character>().TakeDamage(m_damagePerSecond * Time.deltaTime);
         m_navMeshAgent.isStopped = true;
+        m_animator.SetBool("isWalking", false);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(m_playerTag) == false) return;
         m_navMeshAgent.isStopped = false;
+        m_animator.SetBool("isWalking", true);
     }
 }
