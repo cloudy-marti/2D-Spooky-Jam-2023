@@ -192,7 +192,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3122364550864024066, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 690132611}
     m_AddedComponents: []
@@ -200,6 +200,11 @@ PrefabInstance:
 --- !u!4 &102026233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+  m_PrefabInstance: {fileID: 102026232}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &102026234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3122364550864024066, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
   m_PrefabInstance: {fileID: 102026232}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &155830104
@@ -234,6 +239,7 @@ Transform:
   - {fileID: 1094566189}
   - {fileID: 102026233}
   - {fileID: 1727290481}
+  - {fileID: 1072833137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &387082977
@@ -688,7 +694,7 @@ GameObject:
   - component: {fileID: 690132611}
   - component: {fileID: 690132612}
   m_Layer: 0
-  m_Name: Sprite Mask
+  m_Name: Rooftop Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,12 +708,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690132610}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.1407285, w: 0.9900482}
+  m_LocalRotation: {x: -0, y: -0, z: -0.1407285, w: 0.9900482}
   m_LocalPosition: {x: 8.62, y: 8.48, z: -0.07}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 102026233}
+  m_Father: {fileID: 102026234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.18}
 --- !u!331 &690132612
 SpriteMask:
@@ -976,7 +982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8036050146284708213, guid: 88f990080c433b045b1e428e91de32eb, type: 3}
       propertyPath: m_Name
-      value: Door (1)
+      value: OfficeToBedroom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1123,6 +1129,80 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2278404427206165223, guid: c543a28c6a358a44daa1fa2de29b569e, type: 3}
   m_PrefabInstance: {fileID: 1065346410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1072833136
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 155830105}
+    m_Modifications:
+    - target: {fileID: 1325650067183435101, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325650067183435101, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4684633130884123131, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281731783237784694, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_Name
+      value: Living room
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+--- !u!4 &1072833137 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8713696536701782302, guid: 11dd1447c5f418940923ab38923fd9ab, type: 3}
+  m_PrefabInstance: {fileID: 1072833136}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1094566188
 PrefabInstance:
@@ -1320,7 +1400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8036050146284708213, guid: 88f990080c433b045b1e428e91de32eb, type: 3}
       propertyPath: m_Name
-      value: Door (2)
+      value: Basement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1990,7 +2070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8036050146284708213, guid: 88f990080c433b045b1e428e91de32eb, type: 3}
       propertyPath: m_Name
-      value: Door
+      value: KitchenToLivingRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
