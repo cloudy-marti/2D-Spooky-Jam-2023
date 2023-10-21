@@ -90,7 +90,7 @@ public class Character : MonoBehaviour
             PlaceObject(m_collidedPlaceholder);
             return;
         }
-        else if (m_currentHandheldObject == null)
+        else if (m_currentHandheldObject == null && m_collidedObject != null)
         { 
             GrabObject(m_collidedObject);
         }
