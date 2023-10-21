@@ -41,14 +41,18 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(m_playerTag) == false) return;
-        m_navMeshAgent.isStopped = true;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(m_playerTag) == false) return;
+        if (Physics.Raycast(other.transform.position, transform.position) == true)
+        { 
+            m_navMeshAgent.isStopped = false;
+            return; 
+        }
         other.GetComponent<Character>().TakeDamage(m_damagePerSecond * Time.deltaTime);
+        m_navMeshAgent.isStopped = true;
     }
 
     private void OnTriggerExit(Collider other)
