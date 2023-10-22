@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Experimental.GlobalIllumination;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
@@ -10,18 +11,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform m_startingTransform;
     [SerializeField] private float m_stoppingDistance = 2f;
 
+    public bool IsSleeping => m_isSleeping;
+    public bool IsChassing => m_isChassing;
+
     private NavMeshAgent m_navMeshAgent;
     private const string m_playerTag = "Player";
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
-
-    Coroutine m_currentSearchingCoroutine;
+    private Light m_spotLight;
+    private Collider m_visionCollider;
+    private Coroutine m_currentSearchingCoroutine;
+    private bool m_isSleeping = false;
+    private bool m_isChassing = false;
 
     private void Start()
     {
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_animator = GetComponentInChildren<Animator>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_spotLight = GetComponentInChildren<Light>();
+        m_visionCollider = GetComponentInChildren<Collider>();
     }
 
     IEnumerator StartSearching()
@@ -48,6 +57,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Sleep()
+    {
+        m_spotLight.enabled = false;
+        m_visionCollider.enabled = false;
+        m_spriteRenderer.enabled = false;
+        m_isSleeping = true;
+    }
+
+    public void WakeUp()
+    {
+        m_spotLight.enabled = true;
+        m_visionCollider.enabled = true;
+        m_spriteRenderer.enabled = true;
+        m_isSleeping = false;
+    }
+
     public void MoveToPosition(Transform _transform)
     {
         if (m_currentSearchingCoroutine != null) return;
@@ -55,6 +80,12 @@ public class Enemy : MonoBehaviour
         m_navMeshAgent.SetDestination(_transform.position);
         m_currentSearchingCoroutine = StartCoroutine(StartSearching());
         m_animator.SetBool("isWalking", true);
+        m_isChassing = true;
+        if (m_isSleeping)
+        {
+            WakeUp();
+            EnemyManager.Instance.WakeUp();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -75,5 +106,6 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag(m_playerTag) == false) return;
         m_navMeshAgent.isStopped = false;
         m_animator.SetBool("isWalking", true);
+        m_isChassing = false;
     }
 }
