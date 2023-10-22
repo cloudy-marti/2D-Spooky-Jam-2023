@@ -22,5 +22,6 @@ public class Grabbable : MonoBehaviour
     public void OnObjectPlaced()
     {
         m_onPlacedCallback.Invoke();
+        WinManager.GetWinManager().OnGrabbablePlaced();
     }
 }

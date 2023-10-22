@@ -10,6 +10,7 @@ public class GeneralAudioSource : MonoBehaviour
 
     [SerializeField] private AudioClip m_gameOver;
     [SerializeField] private AudioClip m_mainMusic;
+    [SerializeField] private AudioClip m_win;
 
     private AudioSource m_audioSource;
 
@@ -44,5 +45,11 @@ public class GeneralAudioSource : MonoBehaviour
     public void ResumeMusic() 
     {
         m_audioSource.UnPause();
+    }
+
+    public void PlayWinMusic()
+    {
+        // m_audioSource.clip = m_win;
+        // m_audioSource.Play();
     }
 }
