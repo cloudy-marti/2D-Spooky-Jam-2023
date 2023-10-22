@@ -435,3 +435,4 @@ MonoBehaviour:
   m_ghost_transform: {fileID: 7015007385986271677}
   background_image: {fileID: 4620516964012826730}
   duration: 3
+  delay_to_menu: 2

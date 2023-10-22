@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float m_invincibilityCooldown = 10f;
     [SerializeField] private float m_invincibilityDuration = 3f;
     [SerializeField] private float m_healthPoint = 100;
+    [SerializeField] private GameOverScreen m_gameover;
 
     private GameObject m_currentHandheldObject = null;
     private const string m_grabableObjectTag = "Grabbable";
@@ -65,7 +67,10 @@ public class Character : MonoBehaviour
             return;
         }
 
-        //TODO: GAME OVER
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<PlayerInput>().enabled = false;
+        m_gameover.gameObject.SetActive(true);
+        m_gameover.LaunchGameOver();
     }
 
     /// <summary>

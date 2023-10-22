@@ -15,10 +15,10 @@ public class GameOverScreen : MonoBehaviour
     Image background_image;
 
     [SerializeField]
-    float duration;
+    float duration = 3;
 
     [SerializeField]
-    float delay_to_menu;
+    float delay_to_menu = 2;
 
 
     Vector2 m_initial_ghost_pos;
@@ -33,6 +33,7 @@ public class GameOverScreen : MonoBehaviour
         m_initial_background_color = new Color(background_image.color.r, background_image.color.g, background_image.color.b, 0);
         m_images = GetComponentsInChildren<Image>();
         background_image.color = m_initial_background_color;
+        gameObject.SetActive(false);
     }
 
     public void LaunchGameOver()
@@ -48,7 +49,7 @@ public class GameOverScreen : MonoBehaviour
         {
             float t = elapsedTime / duration;
             m_ghost_transform.anchoredPosition = Vector2.Lerp(m_initial_ghost_pos + new Vector2(300, 0), m_initial_ghost_pos, t);
-            foreach(Image image in m_images)
+            foreach(Image image in m_images) // TODO: optimize if necessary
             {
                 Color init_color = new Color(image.color.r, image.color.g, image.color.b, 0);
                 Color final_color = new Color(image.color.r, image.color.g, image.color.b, 1);
@@ -63,22 +64,20 @@ public class GameOverScreen : MonoBehaviour
         // Ensure the final position is exactly at the target
 
         m_ghost_transform.anchoredPosition = m_initial_ghost_pos;
-        foreach (Image image in m_images)
+        foreach (Image image in m_images) // TODO: optimize if necessary
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
         }
         background_image.color = m_final_background_color;
-        StartCoroutine(WaitForMainMenu());
-    }
 
-    private IEnumerator WaitForMainMenu()
-    {
-        float elapsedTime = 0f;
 
+        elapsedTime = 0f;
         while (elapsedTime < delay_to_menu)
         {
+            elapsedTime += Time.deltaTime;
             yield return null; // Wait for the end of the frame
         }
         SceneManager.LoadScene(0);
+        yield break;
     }
 }
