@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField] private float m_healthPoint = 100;
     [SerializeField] private GameOverScreen m_gameover;
 
-    private GameObject m_currentHandheldObject = null;
+    private Grabbable m_currentHandheldObject = null;
     private const string m_grabableObjectTag = "Grabbable";
     private const string m_receptacleObjectTage = "Receptacle";
     private float m_invicibilityCountdown = 0;
@@ -136,7 +136,7 @@ public class Character : MonoBehaviour
         {
             return false;
         }
-        m_currentHandheldObject = _object;
+        m_currentHandheldObject = _object.GetComponent<Grabbable>();
         _object.transform.parent = m_objectPlaceHolder;
         _object.transform.position = Vector3.zero;
         _object.transform.localPosition = Vector3.zero;
@@ -151,13 +151,18 @@ public class Character : MonoBehaviour
     /// <returns>True if the object was placed, false otherwise</returns>
     public bool PlaceObject(GameObject _placeHolder)
     {
-        if (_placeHolder.CompareTag(m_receptacleObjectTage) == false || m_currentHandheldObject.GetComponent<GrabbableReceptacle>().get_receptacle() != _placeHolder)
+        if (_placeHolder.CompareTag(m_receptacleObjectTage) == false || m_currentHandheldObject.GetReceptacle() != _placeHolder)
         {
             return false;
         }
 
         m_currentHandheldObject.transform.parent = _placeHolder.transform;
         m_currentHandheldObject.transform.localPosition = Vector3.zero;
+        foreach (Collider collider in m_currentHandheldObject.GetComponents<Collider>())
+        {
+            collider.enabled = false;
+        }
+        m_currentHandheldObject.OnObjectPlaced();
         m_currentHandheldObject = null;
         return true;
     }
@@ -165,18 +170,26 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Grabbable"))
+        { 
             m_collidedGrabbable = other.gameObject;
+        }
 
         if (other.gameObject.CompareTag("Receptacle"))
+        { 
             m_collidedReceptacle = other.gameObject;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (m_collidedGrabbable != null && m_collidedGrabbable != other.gameObject)
+        { 
             m_collidedGrabbable = null;
+        }
 
         if (m_collidedReceptacle != null && m_collidedReceptacle != other.gameObject)
+        { 
             m_collidedReceptacle = null;
+        }
     }
 }

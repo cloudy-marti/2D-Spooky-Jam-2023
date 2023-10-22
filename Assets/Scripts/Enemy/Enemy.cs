@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Experimental.GlobalIllumination;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
@@ -10,6 +9,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float m_searchingDuration = 5f;
     [SerializeField] private Transform m_startingTransform;
     [SerializeField] private float m_stoppingDistance = 2f;
+    [SerializeField] private Collider m_visionCollider;
+    [SerializeField] private LayerMask m_ingoreForRaycast;
 
     public bool IsSleeping => m_isSleeping;
     public bool IsChassing => m_isChassing;
@@ -19,7 +20,6 @@ public class Enemy : MonoBehaviour
     private Animator m_animator;
     private SpriteRenderer m_spriteRenderer;
     private Light m_spotLight;
-    private Collider m_visionCollider;
     private Coroutine m_currentSearchingCoroutine;
     private bool m_isSleeping = false;
     private bool m_isChassing = false;
@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_spotLight = GetComponentInChildren<Light>();
-        m_visionCollider = GetComponentInChildren<Collider>();
     }
 
     IEnumerator StartSearching()
@@ -92,19 +91,25 @@ public class Enemy : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(m_playerTag) == false) return;
-        if (Physics.Raycast(other.transform.position, transform.position) == true)
+        RaycastHit hit;
+        Physics.Raycast(other.transform.position, transform.position, out hit, 25f, m_ingoreForRaycast);
+        if (hit.collider)
         { 
+            Debug.Log($"Player blocked by {other.name}");
             m_navMeshAgent.isStopped = false;
             return; 
         }
         other.GetComponent<Character>().TakeDamage(m_damagePerSecond * Time.deltaTime);
         m_navMeshAgent.isStopped = true;
         m_animator.SetBool("isWalking", false);
+        Debug.Log("Player insight");
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(m_playerTag) == false) return;
+        Debug.Log("Player out of sight");
         m_navMeshAgent.isStopped = false;
         m_animator.SetBool("isWalking", true);
         m_isChassing = false;

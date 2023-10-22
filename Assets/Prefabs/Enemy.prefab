@@ -78,9 +78,9 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -122,10 +122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910995f0b5a632a4cb7b79909903d570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_damagePerSecond: 20
+  m_damagePerSecond: 40
   m_searchingDuration: 5
   m_startingTransform: {fileID: 0}
   m_stoppingDistance: 2
+  m_visionCollider: {fileID: 422721616717901058}
+  m_ingoreForRaycast:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3209724780161539065
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,13 +269,13 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 183
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5, y: 4, z: 6}
+  m_Size: {x: 3.5, y: 2.5, z: 6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4846484487439222533
 GameObject:
