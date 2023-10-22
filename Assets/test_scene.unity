@@ -3242,6 +3242,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.045
       objectReference: {fileID: 0}
+    - target: {fileID: 5955594726033961352, guid: 738fcc0f20c3f424eae731d914822d78, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.099
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3913,7 +3917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameOver: {fileID: 8300000, guid: cee0db0cb4aa28042862c475de6b90c0, type: 3}
   m_mainMusic: {fileID: 8300000, guid: 5253ee4704a79a74b964ab37a04b9a59, type: 3}
-  m_win: {fileID: 0}
+  m_win: {fileID: 8300000, guid: 55345e74269dc4d4c8cf5aa9f445d682, type: 3}
 --- !u!82 &1979613177
 AudioSource:
   m_ObjectHideFlags: 0

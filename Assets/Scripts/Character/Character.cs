@@ -89,6 +89,11 @@ public class Character : MonoBehaviour
         m_canTakeDamage = false;
     }
 
+    public void OnUseSkill()
+    {
+        MakeInvincible();
+    }
+
     /// <summary>
     /// Called by the Grab Command in the input manager
     /// </summary>
