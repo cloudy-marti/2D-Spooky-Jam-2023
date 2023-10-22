@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform m_objectPlaceHolder;
     [SerializeField] private float m_invincibilityCooldown = 10f;
     [SerializeField] private float m_invincibilityDuration = 3f;
-    [SerializeField] private float m_healthPoint = 100;
+    [SerializeField] private float m_maxHealthPoint = 100;
     [SerializeField] private GameOverScreen m_gameover;
 
     private Grabbable m_currentHandheldObject = null;
@@ -19,14 +19,19 @@ public class Character : MonoBehaviour
     private GameObject m_collidedGrabbable = null;
     private GameObject m_collidedReceptacle = null;
     private bool m_gameOver = false;
-
+    private SpriteRenderer m_spriteRenderer;
     private float DROP_TORQUE = 5f;
+    private float m_healthPoint;
+    private float m_lastAlpha = 0f;
+
+    private void Start()
+    {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_healthPoint = m_maxHealthPoint;
+    }
 
     public void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E)) MakeInvincible();
-        //if (Input.GetKeyDown(KeyCode.A)) TakeDamage(1f);
-
         // If we can take damage and our skill isn't ready, we are not using it, so we count the cooldown for the skill
         if (m_invincibilityReady == false && m_canTakeDamage == true)
         { 
@@ -46,6 +51,9 @@ public class Character : MonoBehaviour
             {
                 m_canTakeDamage = true;
                 m_invicibilityDurationCountdown = 0f;
+                Color newColor = m_spriteRenderer.color;
+                newColor.a = m_lastAlpha;
+                m_spriteRenderer.color = newColor;
             }
         }
     }
@@ -62,6 +70,9 @@ public class Character : MonoBehaviour
         }
 
         m_healthPoint = Mathf.Clamp(m_healthPoint - _damage, 0, m_healthPoint);
+        Color newColor = m_spriteRenderer.color;
+        newColor.a = m_healthPoint / m_maxHealthPoint;
+        m_spriteRenderer.color = newColor;
 
         if (m_healthPoint > 0f || m_gameOver == true)
         {
@@ -92,6 +103,10 @@ public class Character : MonoBehaviour
 
         m_invincibilityReady = false;
         m_canTakeDamage = false;
+        m_lastAlpha = m_spriteRenderer.color.a;
+        Color newColor = m_spriteRenderer.color;
+        newColor.a = 0f;
+        m_spriteRenderer.color = newColor;
     }
 
     public void OnUseSkill()
