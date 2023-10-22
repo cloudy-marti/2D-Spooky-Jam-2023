@@ -100,15 +100,15 @@ public class Enemy : MonoBehaviour
         RaycastHit hit;
 
         Vector3 direction = other.transform.position - transform.position;
-         if (Physics.Raycast(transform.position, direction, out hit, 50, ~m_ingoreForRaycast) == true && hit.collider?.CompareTag(m_playerTag) == false)
+        if (Physics.Raycast(transform.position, direction, out hit, 50, ~m_ingoreForRaycast) == true && hit.collider?.CompareTag(m_playerTag) == false)
         { 
             m_navMeshAgent.isStopped = false;
             return; 
         }
+
         other.GetComponent<Character>().TakeDamage(m_damagePerSecond * Time.deltaTime);
         m_navMeshAgent.isStopped = true;
         m_animator.SetBool("isWalking", false);
-
     }
 
     private void OnTriggerExit(Collider other)
