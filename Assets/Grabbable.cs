@@ -1,19 +1,27 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class Grabbable : MonoBehaviour
 {
-    [SerializeField] UnityEvent m_onPlacedCallback;
-    [SerializeField] UnityEvent m_onPickedCallback;
-    [SerializeField] UnityEvent m_onDroppedCallback;
-    [SerializeField] GameObject m_receptacle;
+    [SerializeField] private UnityEvent m_onPlacedCallback;
+    [SerializeField] private UnityEvent m_onPickedCallback;
+    [SerializeField] private UnityEvent m_onDroppedCallback;
+    [SerializeField] private GameObject m_receptacle;
+    [SerializeField] private AudioClip m_onDropSound;
+    [SerializeField] private AudioClip m_onPlacedSound;
+    [SerializeField] private AudioClip m_onPickupSound;
+    AudioSource m_audioSource;
 
     public void Start()
     {
         ParticleSystem particles = m_receptacle.GetComponent<ParticleSystem>();
         Sprite sprite = GetComponentInChildren<SpriteRenderer>().sprite;
         if (sprite != null)
+        { 
             particles.textureSheetAnimation.AddSprite(sprite);
+        }
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     public GameObject GetReceptacle()
@@ -29,15 +37,18 @@ public class Grabbable : MonoBehaviour
         {
             collider.enabled = false;
         }
+        m_audioSource.PlayOneShot(m_onPlacedSound);
     }
 
     public void OnObjectPicked()
     {
         m_onPickedCallback.Invoke();
+        m_audioSource.PlayOneShot(m_onPickupSound);
     }
 
     public void OnObjectDropped()
     {
         m_onDroppedCallback.Invoke();
+        m_audioSource.PlayOneShot(m_onDropSound);
     }
 }

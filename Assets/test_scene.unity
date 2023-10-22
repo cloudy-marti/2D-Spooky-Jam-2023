@@ -231,6 +231,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4378322417664016988, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_onDropSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 45e3a6db70b5ffb4985dc1a0233f0a72, type: 3}
+    - target: {fileID: 4378322417664016988, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_onPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e65e5c5485dd0824a8619a8d1a4362b1, type: 3}
+    - target: {fileID: 4378322417664016988, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_onPlacedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b5598c872b1c2f48b06ab55151e442e, type: 3}
     - target: {fileID: 4824231462428579466, guid: 137d789b41e520142b573f08c2386f90, type: 3}
       propertyPath: m_idleTransitionTime
       value: 10

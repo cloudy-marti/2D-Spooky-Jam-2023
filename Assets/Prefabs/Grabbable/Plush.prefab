@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2745478583236208021, guid: e05faf9d50ab28c4f81877dd857aa0d7, type: 3}
+      propertyPath: m_onPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 40bdebbf337174a438e261762cce59ea, type: 3}
     - target: {fileID: 2860118578050351127, guid: e05faf9d50ab28c4f81877dd857aa0d7, type: 3}
       propertyPath: m_Size.z
       value: 3

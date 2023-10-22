@@ -125,7 +125,7 @@ public class Character : MonoBehaviour
 
         m_currentHandheldObject.GetReceptacle().SetActive(false);
         m_currentHandheldObject.transform.parent = null;
-        m_currentHandheldObject.OnObjectPlaced();
+        m_currentHandheldObject.OnObjectDropped();
         Rigidbody rigidbody = m_currentHandheldObject.GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
         rigidbody.AddTorque(new Vector3(0, 0, Random.Range(-1, 1) * DROP_TORQUE));

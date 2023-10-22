@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2745478583236208021, guid: e05faf9d50ab28c4f81877dd857aa0d7, type: 3}
+      propertyPath: m_onPickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e65e5c5485dd0824a8619a8d1a4362b1, type: 3}
     - target: {fileID: 3442399640862736264, guid: e05faf9d50ab28c4f81877dd857aa0d7, type: 3}
       propertyPath: m_Name
       value: WallBoard
