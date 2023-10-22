@@ -76,7 +76,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2745478583236208021
 MonoBehaviour:
@@ -219,7 +219,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1, y: 2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &8177549836459755606
 ParticleSystem:
