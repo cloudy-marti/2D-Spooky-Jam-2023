@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1338496, g: 0.14376414, b: 0.1349752, a: 1}
+  m_IndirectSpecularColor: {r: 0.13384944, g: 0.14376397, b: 0.13497484, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1310,12 +1310,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5749800775787328360, guid: 55901b44a01bef247b775a48aef241c5, type: 3}
       propertyPath: m_Volume
-      value: 0.01
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5749800775787328360, guid: 55901b44a01bef247b775a48aef241c5, type: 3}
+      propertyPath: MaxDistance
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5749800775787328360, guid: 55901b44a01bef247b775a48aef241c5, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 96a9b01b389a8e640a9ba6b541b7adf5, type: 3}
+    - target: {fileID: 5749800775787328360, guid: 55901b44a01bef247b775a48aef241c5, type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5749800775787328360, guid: 55901b44a01bef247b775a48aef241c5, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
