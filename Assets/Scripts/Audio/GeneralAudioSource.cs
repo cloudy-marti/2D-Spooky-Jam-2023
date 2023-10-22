@@ -9,6 +9,7 @@ public class GeneralAudioSource : MonoBehaviour
     private static GeneralAudioSource m_instance;
 
     [SerializeField] private AudioClip m_gameOver;
+    [SerializeField] private AudioClip m_mainMusic;
 
     private AudioSource m_audioSource;
 
@@ -25,6 +26,8 @@ public class GeneralAudioSource : MonoBehaviour
     private void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
+        m_audioSource.clip = m_mainMusic;
+        m_audioSource.Play();
     }
 
     public void PlayGameOverMusic()
@@ -33,4 +36,13 @@ public class GeneralAudioSource : MonoBehaviour
         m_audioSource.Play();
     }
 
+    public void PauseMusic()
+    {
+        m_audioSource.Pause();
+    }
+
+    public void ResumeMusic() 
+    {
+        m_audioSource.UnPause();
+    }
 }
