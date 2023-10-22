@@ -4,6 +4,8 @@ using UnityEngine.Events;
 public class Grabbable : MonoBehaviour
 {
     [SerializeField] UnityEvent m_onPlacedCallback;
+    [SerializeField] UnityEvent m_onPickedCallback;
+    [SerializeField] UnityEvent m_onDroppedCallback;
     [SerializeField] GameObject m_receptacle;
 
     public void Start()
@@ -27,5 +29,15 @@ public class Grabbable : MonoBehaviour
         {
             collider.enabled = false;
         }
+    }
+
+    public void OnObjectPicked()
+    {
+        m_onPickedCallback.Invoke();
+    }
+
+    public void OnObjectDropped()
+    {
+        m_onDroppedCallback.Invoke();
     }
 }

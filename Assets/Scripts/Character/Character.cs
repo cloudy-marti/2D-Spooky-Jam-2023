@@ -125,6 +125,7 @@ public class Character : MonoBehaviour
 
         m_currentHandheldObject.GetReceptacle().SetActive(false);
         m_currentHandheldObject.transform.parent = null;
+        m_currentHandheldObject.OnObjectPlaced();
         Rigidbody rigidbody = m_currentHandheldObject.GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
         rigidbody.AddTorque(new Vector3(0, 0, Random.Range(-1, 1) * DROP_TORQUE));
@@ -146,6 +147,7 @@ public class Character : MonoBehaviour
         }
         m_currentHandheldObject = _object.GetComponent<Grabbable>();
         m_currentHandheldObject.GetReceptacle().SetActive(true);
+        m_currentHandheldObject.OnObjectPicked();
         _object.transform.parent = m_objectPlaceHolder;
         _object.transform.position = Vector3.zero;
         _object.transform.localPosition = Vector3.zero;
