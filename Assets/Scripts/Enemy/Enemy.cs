@@ -98,8 +98,9 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag(m_playerTag) == false) return;
         RaycastHit hit;
-        Physics.Raycast(other.transform.position, transform.position, out hit, 25f, m_ingoreForRaycast);
-        if (hit.collider)
+
+        Vector3 direction = other.transform.position - transform.position;
+         if (Physics.Raycast(transform.position, direction, out hit, 50, ~m_ingoreForRaycast) == true && hit.collider?.CompareTag(m_playerTag) == false)
         { 
             m_navMeshAgent.isStopped = false;
             return; 

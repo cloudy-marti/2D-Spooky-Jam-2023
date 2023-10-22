@@ -232,6 +232,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4824231462428579466, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_idleTransitionTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4824231462428579466, guid: 137d789b41e520142b573f08c2386f90, type: 3}
       propertyPath: m_triggerCallback.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -301,6 +305,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5838346209646664880, guid: 137d789b41e520142b573f08c2386f90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895669310242953015, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_Volume
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895669310242953015, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bdc2474be8f30c44ca2d8d31d284cd39, type: 3}
+    - target: {fileID: 5895669310242953015, guid: 137d789b41e520142b573f08c2386f90, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226167179435823519, guid: 137d789b41e520142b573f08c2386f90, type: 3}
@@ -4353,9 +4369,21 @@ PrefabInstance:
       propertyPath: m_startingTransform
       value: 
       objectReference: {fileID: 2125535284}
+    - target: {fileID: 1183767332748441098, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
+      propertyPath: m_ingoreForRaycast.m_Bits
+      value: 448
+      objectReference: {fileID: 0}
     - target: {fileID: 2492027511684665857, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2492027511684665857, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209724780161539065, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3623520538053211614, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4398,8 +4426,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585626160483322130, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585626160483322130, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846484487439222533, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6186010879271498132, guid: 6836dbd9b1dc89c4e9f43e2ed235763f, type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
