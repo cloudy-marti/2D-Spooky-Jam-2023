@@ -118,6 +118,7 @@ public class Character : MonoBehaviour
         if (m_currentHandheldObject == null)
             return false;
 
+        m_currentHandheldObject.GetReceptacle().SetActive(false);
         m_currentHandheldObject.transform.parent = null;
         Rigidbody rigidbody = m_currentHandheldObject.GetComponent<Rigidbody>();
         rigidbody.isKinematic = false;
@@ -139,6 +140,7 @@ public class Character : MonoBehaviour
             return false;
         }
         m_currentHandheldObject = _object.GetComponent<Grabbable>();
+        m_currentHandheldObject.GetReceptacle().SetActive(true);
         _object.transform.parent = m_objectPlaceHolder;
         _object.transform.position = Vector3.zero;
         _object.transform.localPosition = Vector3.zero;
@@ -160,6 +162,7 @@ public class Character : MonoBehaviour
 
         m_currentHandheldObject.transform.parent = _placeHolder.transform;
         m_currentHandheldObject.transform.localPosition = Vector3.zero;
+        m_currentHandheldObject.transform.localRotation = _placeHolder.transform.localRotation;
         foreach (Collider collider in m_currentHandheldObject.GetComponents<Collider>())
         {
             collider.enabled = false;
