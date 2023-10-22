@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
@@ -78,7 +79,6 @@ public class GameOverScreen : MonoBehaviour
         {
             yield return null; // Wait for the end of the frame
         }
-
-        // TODO scene manager
+        SceneManager.LoadScene(0);
     }
 }
