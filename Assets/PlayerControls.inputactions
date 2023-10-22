@@ -1,0 +1,54 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "75bc732f-0b59-4e13-92bc-3d84b89c2543",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "c25c0f3f-e010-4099-865a-5353beaf99b3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UseSkill",
+                    "type": "Button",
+                    "id": "1694a611-7fe3-4cf4-973d-6ae8bf5c0afc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4f0e8ff0-cfc1-4d3b-9333-6a3ae8955fcc",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50a411c0-54fb-4f00-a7db-abe51f1ea3cc",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

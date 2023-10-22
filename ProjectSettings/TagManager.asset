@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grabbable
+  - Interactable
+  - Receptacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -11,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Grabbable
+  - Enemy
+  - Electronics
   - 
   - 
   - 
