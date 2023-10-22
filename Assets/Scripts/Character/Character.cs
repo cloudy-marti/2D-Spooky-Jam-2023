@@ -172,7 +172,7 @@ public class Character : MonoBehaviour
         return true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Grabbable"))
         { 

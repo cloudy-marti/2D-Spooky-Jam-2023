@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.UI;
 using UnityEngine;
 
 public class WinManager : MonoBehaviour
 {
-    [SerializeField] int m_number_of_grabbables = 1;
     [SerializeField] WinScreen m_win_screen;
 
     int m_number_of_placed_grabbable;
     static WinManager active_win_manager = null;
+    private int m_number_of_grabbables = -1;
 
     public static WinManager GetWinManager()
     {
@@ -20,6 +21,7 @@ public class WinManager : MonoBehaviour
     {
         m_number_of_placed_grabbable = 0;
         active_win_manager = this;
+        m_number_of_grabbables = FindObjectsByType<Grabbable>(FindObjectsSortMode.InstanceID).Length;
     }
 
     public void OnGrabbablePlaced()

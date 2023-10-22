@@ -75,8 +75,6 @@ public class Enemy : MonoBehaviour
         m_visionCollider.enabled = true;
         m_spriteRenderer.enabled = true;
         m_isSleeping = false;
-        m_audioSource.clip = m_dangerSound;
-        m_audioSource.Play();
     }
 
     public void MoveToPosition(Transform _transform)
@@ -87,6 +85,8 @@ public class Enemy : MonoBehaviour
         m_currentSearchingCoroutine = StartCoroutine(StartSearching());
         m_animator.SetBool("isWalking", true);
         m_isChassing = true;
+        m_audioSource.clip = m_dangerSound;
+        m_audioSource.Play();
         if (m_isSleeping)
         {
             WakeUp();

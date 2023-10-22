@@ -33,6 +33,7 @@ public class GeneralAudioSource : MonoBehaviour
 
     public void PlayGameOverMusic()
     {
+        m_audioSource.Stop();
         m_audioSource.clip = m_gameOver;
         m_audioSource.Play();
     }

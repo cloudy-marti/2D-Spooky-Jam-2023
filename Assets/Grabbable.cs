@@ -23,5 +23,9 @@ public class Grabbable : MonoBehaviour
     {
         m_onPlacedCallback.Invoke();
         WinManager.GetWinManager().OnGrabbablePlaced();
+        foreach (Collider collider in GetComponents<Collider>())
+        {
+            collider.enabled = false;
+        }
     }
 }
