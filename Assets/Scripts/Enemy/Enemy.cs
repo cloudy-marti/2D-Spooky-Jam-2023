@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
         m_navMeshAgent.SetDestination(m_startingTransform.position);
         m_currentSearchingCoroutine = null;
         m_animator.SetBool("isWalking", true);
+        m_isChassing = false;
     }
 
     private void Update()
