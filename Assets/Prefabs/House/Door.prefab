@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347235453164925972}
-  - component: {fileID: 8626959773062894783}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -33,20 +32,6 @@ Transform:
   - {fileID: 2282110126136430311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8626959773062894783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8036050146284708213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def9d7c3667c95f41ae7910bebaedb0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_door_opened: {fileID: 0}
-  m_door_closed: {fileID: 0}
 --- !u!1001 &14966349422005248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1347235453164925972}
     m_Modifications:
+    - target: {fileID: 393580126371981177, guid: c543a28c6a358a44daa1fa2de29b569e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7646f28b5c51ec7478d751b88a5224ac, type: 2}
     - target: {fileID: 2278404427206165223, guid: c543a28c6a358a44daa1fa2de29b569e, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

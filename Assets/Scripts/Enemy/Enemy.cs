@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float m_stoppingDistance = 2f;
     [SerializeField] private Collider m_visionCollider;
     [SerializeField] private LayerMask m_ingoreForRaycast;
+    [SerializeField] private AudioClip m_dangerSound;
 
     public bool IsSleeping => m_isSleeping;
     public bool IsChassing => m_isChassing;
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     private Coroutine m_currentSearchingCoroutine;
     private bool m_isSleeping = false;
     private bool m_isChassing = false;
+    private AudioSource m_audioSource;
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_spotLight = GetComponentInChildren<Light>();
+        m_audioSource = GetComponent<AudioSource>();
     }
 
     IEnumerator StartSearching()
@@ -71,6 +74,8 @@ public class Enemy : MonoBehaviour
         m_visionCollider.enabled = true;
         m_spriteRenderer.enabled = true;
         m_isSleeping = false;
+        m_audioSource.clip = m_dangerSound;
+        m_audioSource.Play();
     }
 
     public void MoveToPosition(Transform _transform)
@@ -95,21 +100,18 @@ public class Enemy : MonoBehaviour
         Physics.Raycast(other.transform.position, transform.position, out hit, 25f, m_ingoreForRaycast);
         if (hit.collider)
         { 
-            Debug.Log($"Player blocked by {other.name}");
             m_navMeshAgent.isStopped = false;
             return; 
         }
         other.GetComponent<Character>().TakeDamage(m_damagePerSecond * Time.deltaTime);
         m_navMeshAgent.isStopped = true;
         m_animator.SetBool("isWalking", false);
-        Debug.Log("Player insight");
 
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(m_playerTag) == false) return;
-        Debug.Log("Player out of sight");
         m_navMeshAgent.isStopped = false;
         m_animator.SetBool("isWalking", true);
         m_isChassing = false;

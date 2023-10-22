@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,7 +18,6 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField]
     float delay_to_menu = 2;
 
-
     Vector2 m_initial_ghost_pos;
     Color m_final_background_color;
     Color m_initial_background_color;
@@ -38,6 +35,7 @@ public class GameOverScreen : MonoBehaviour
 
     public void LaunchGameOver()
     {
+        GeneralAudioSource.Instance.PlayGameOverMusic();
         StartCoroutine(AnimateGameOver());
     }
 

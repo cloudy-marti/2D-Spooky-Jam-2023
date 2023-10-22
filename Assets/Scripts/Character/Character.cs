@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
     private bool m_canTakeDamage = true;
     private GameObject m_collidedGrabbable = null;
     private GameObject m_collidedReceptacle = null;
+    private bool m_gameOver = false;
 
     private float DROP_TORQUE = 5f;
 
@@ -60,13 +61,14 @@ public class Character : MonoBehaviour
             return;
         }
 
-        m_healthPoint -= _damage;
+        m_healthPoint = Mathf.Clamp(m_healthPoint - _damage, 0, m_healthPoint);
 
-        if (m_healthPoint > 0f)
+        if (m_healthPoint > 0f || m_gameOver == true)
         {
             return;
         }
 
+        m_gameOver = true;
         GetComponent<PlayerController>().enabled = false;
         GetComponent<PlayerInput>().enabled = false;
         m_gameover.gameObject.SetActive(true);
