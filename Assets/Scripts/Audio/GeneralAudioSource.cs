@@ -50,7 +50,7 @@ public class GeneralAudioSource : MonoBehaviour
 
     public void PlayWinMusic()
     {
-        // m_audioSource.clip = m_win;
-        // m_audioSource.Play();
+        m_audioSource.clip = m_win;
+        m_audioSource.Play();
     }
 }

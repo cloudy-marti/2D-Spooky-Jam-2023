@@ -3,6 +3,7 @@ using UnityEngine;
 public class WinManager : MonoBehaviour
 {
     [SerializeField] WinScreen m_win_screen;
+    [SerializeField] Character m_character;
 
     int m_number_of_placed_grabbable;
     static WinManager active_win_manager = null;
@@ -31,6 +32,7 @@ public class WinManager : MonoBehaviour
         if(m_number_of_placed_grabbable >= m_number_of_grabbables)
         {
             m_win_screen.gameObject.SetActive(true);
+            m_character.GameOver();
             m_win_screen.LaunchWin();
         }
     }

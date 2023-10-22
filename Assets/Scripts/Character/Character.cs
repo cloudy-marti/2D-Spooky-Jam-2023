@@ -75,6 +75,11 @@ public class Character : MonoBehaviour
         m_gameover.LaunchGameOver();
     }
 
+    public void GameOver()
+    {
+        m_gameOver = true;
+    }
+
     /// <summary>
     /// Make yourself invincible, only possible if <see cref="m_invincibilityReady"/> is true
     /// </summary>
