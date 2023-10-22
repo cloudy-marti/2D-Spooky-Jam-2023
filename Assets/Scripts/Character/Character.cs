@@ -187,12 +187,12 @@ public class Character : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (m_collidedGrabbable != null && m_collidedGrabbable != other.gameObject)
+        if (m_collidedGrabbable != null)
         { 
             m_collidedGrabbable = null;
         }
 
-        if (m_collidedReceptacle != null && m_collidedReceptacle != other.gameObject)
+        if (m_collidedReceptacle != null)
         { 
             m_collidedReceptacle = null;
         }
