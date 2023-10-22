@@ -6,6 +6,14 @@ public class Grabbable : MonoBehaviour
     [SerializeField] UnityEvent m_onPlacedCallback;
     [SerializeField] GameObject m_receptacle;
 
+    public void Start()
+    {
+        ParticleSystem particles = m_receptacle.GetComponent<ParticleSystem>();
+        Sprite sprite = GetComponentInChildren<SpriteRenderer>().sprite;
+        if (sprite != null)
+            particles.textureSheetAnimation.AddSprite(sprite);
+    }
+
     public GameObject GetReceptacle()
     { 
         return m_receptacle;
