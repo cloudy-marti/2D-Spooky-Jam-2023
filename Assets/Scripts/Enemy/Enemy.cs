@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitUntil(() => m_navMeshAgent.remainingDistance <= m_stoppingDistance && m_navMeshAgent.hasPath);
         m_navMeshAgent.isStopped = true;
+        m_animator.SetBool("isWalking", false);
         yield return new WaitForSeconds(m_searchingDuration);
         m_navMeshAgent.isStopped = false;
 
